@@ -1,5 +1,10 @@
 # MapCache
 
+MapCache is a server that implements tile caching to speed up access to WMS
+layers. The primary objectives are to be fast and easily deployable, while
+offering the essential features (and more!) expected from a tile caching
+solution.
+
 For more information, see MapCache repository: 
 https://github.com/mapserver/mapcache
 
