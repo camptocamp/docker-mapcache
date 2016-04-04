@@ -18,7 +18,7 @@ $ docker build -t yjacolin/mapache .
 
 Get help:
 ```
-$ docker run -d -p 8281:80 -v somewhere:/var/sig/tiles --name mapcache yjacolin/mapcache
+$ docker run -d -p 8281:80 -v somewhere:/var/sig/tiles -v config.xml:/mapcache/config.xml --name mapcache yjacolin/mapcache
 $ docker start mapcache
 $ docker stop mapcache
 ```
@@ -27,11 +27,11 @@ $ docker stop mapcache
 
 Seed google layer from config file:
 ```
-$ docker run --rm -ti -v somewhere:/var/sig/tiles yjacolin/mapcache_seed -c /mapcache/config.xml -l google
+$ docker run --rm -ti -v somewhere:/var/sig/tiles -v config.xml:/mapcache/config.xml yjacolin/mapcache mapcache_seed -c /mapcache/config.xml -l google
 ```
 
 ## TODO
 
 * fastcgi
-* add options config
+* add optionnal parameter to mapcache build
 
