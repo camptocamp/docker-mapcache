@@ -41,5 +41,4 @@ WORKDIR /mapcache
 VOLUME ["/mapcache", "/var/sig/tiles"]
 
 EXPOSE 80
-
 CMD ["apache2ctl", "-DFOREGROUND"]
