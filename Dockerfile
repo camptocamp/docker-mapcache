@@ -2,7 +2,7 @@ FROM debian:stable
 MAINTAINER Yves Jacolin <yjacolin@free.fr>
 
 ENV VERSION 2016-04-02
-ARG MAPCACHE_VERSION=master
+ARG MAPCACHE_VERSION=branch-1-4
 
 RUN apt-get update
 RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qqy git cmake \
