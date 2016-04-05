@@ -6,7 +6,7 @@ ARG MAPCACHE_VERSION=branch-1-0
 
 RUN apt-get update
 RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qqy git cmake \
-    build-essential \
+    build-essential autoconf \
     libfcgi-dev liblz-dev libpng-dev libgdal-dev libgeos-dev \
     libpixman-1-dev libsqlite0-dev libcurl4-openssl-dev \
     libaprutil1-dev libapr1-dev libjpeg-dev libdpkg-dev \
