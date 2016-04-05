@@ -7,6 +7,3 @@ script:
   - ./.build.sh
 after_success:
   - ./.publish.sh
-before_script:
-  - sudo apt-get update
-  - sudo apt-get install -y -q docker-engine
