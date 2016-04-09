@@ -1,6 +1,6 @@
 # MapCache
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/yjacolin/docker-mapcache.svg)](https://hub.docker.com/r/yjacolin/docker-mapcache/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/yjacolin/mapcache.svg)](https://hub.docker.com/r/yjacolin/mapcache/)
 
 [![Travis](https://travis-ci.org/yjacolin/docker-mapcache.svg)](https://travis-ci.org/yjacolin/docker-mapcache)
 
