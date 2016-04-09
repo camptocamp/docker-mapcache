@@ -1,13 +1,13 @@
 #!/bin/bash -e
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   echo "Building image with tag latest"
-  docker build -t yjacolin/docker-mapcache:latest .
+  docker build -t yjacolin/mapcache:latest .
 elif [ ! -z "$TRAVIS_TAG" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo "Building image with tag ${TRAVIS_TAG}"
-  docker build -t yjacolin/docker-mapcache:$TRAVIS_TAG .
+  docker build -t yjacolin/mapcache:$TRAVIS_TAG .
 elif [ ! -z "$TRAVIS_BRANCH" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   echo "Building image with tag ${TRAVIS_BRANCH}"
-  docker build -t yjacolin/docker-mapcache:$TRAVIS_BRANCH .
+  docker build -t yjacolin/mapcache:$TRAVIS_BRANCH .
 else
   echo "Don't know how to build image"
   exit 1
