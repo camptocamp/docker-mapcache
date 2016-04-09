@@ -3,9 +3,10 @@ language: ruby
 sudo: required
 services: docker
 cache: bundler
-beofre_install:
-  - openssl aes-256-cbc -K $encrypted_b118096d0a7c_key -iv $encrypted_b118096d0a7c_iv -in config.json.enc -out ~\/.docker/config.json -d
 script:
   - ./.build.sh
 after_success:
   - ./.publish.sh
+dd:
+- openssl aes-256-cbc -K $encrypted_b118096d0a7c_key -iv $encrypted_b118096d0a7c_iv
+  -in config.json.enc -out ~\/.docker/config.json -d
