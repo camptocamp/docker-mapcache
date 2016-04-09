@@ -1,6 +1,6 @@
 #!/bin/bash -e
 # Setup login
-openssl aes-256-cbc -K $encrypted_b6863b582c7b_key -iv $encrypted_b6863b582c7b_iv -in config.json.enc -out ~\/.docker/config.json -d
+#openssl aes-256-cbc -K $encrypted_b6863b582c7b_key -iv $encrypted_b6863b582c7b_iv -in config.json.enc -out ~\/.docker/config.json -d
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   echo "Deploying image to docker hub for master (latest)"
   docker push "yjacolin/docker-mapcache:latest"
