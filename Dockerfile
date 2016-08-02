@@ -37,7 +37,6 @@ RUN apt-get purge -y software-properties-common build-essential cmake ; \
     libpixman-1-dev libsqlite0-dev libcurl4-openssl-dev \
     libaprutil1-dev libapr1-dev libjpeg-dev libdpkg-dev \
     libdb5.3-dev libtiff5-dev libpcre3-dev ; \
-    apt-get autoremove -y ; \
     apt-get clean ; \
     rm -rf /var/lib/apt/lists/partial/* /tmp/* /var/tmp/*
 
