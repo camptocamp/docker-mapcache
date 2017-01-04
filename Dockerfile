@@ -1,5 +1,5 @@
 FROM debian:stable
-MAINTAINER Yves Jacolin <yjacolin@free.fr>
+MAINTAINER Camptocamp "info@camptocamp.com"
 
 ENV VERSION 2016-04-02
 ENV MAPCACHE_VERSION=master
