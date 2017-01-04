@@ -15,7 +15,7 @@ RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qqy git cmake \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/partial/* /tmp/* /var/tmp/*
 
-RUN mkdir /build && mkdir -p /var/sig/tiles
+RUN mkdir /build && mkdir -p /var/sig/tiles && chown -R www-data /var/sig/tiles
 RUN mkdir /mapcache
 
 RUN cd /build && git clone https://github.com/mapserver/mapcache.git && \
