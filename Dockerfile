@@ -32,7 +32,7 @@ ADD mapcache.conf /etc/apache2/sites-available/mapcache.conf
 ADD mapcache.load /etc/apache2/mods-available/mapcache.load
 ADD docker-start.sh /
 
-RUN a2enmod mapcache && \
+RUN a2enmod mapcache rewrite && \
     a2dissite 000-default && \
     a2ensite mapcache && \
     a2dismod -f auth_basic authn_file authn_core authz_host authz_user autoindex dir status && \
