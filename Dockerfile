@@ -26,7 +26,7 @@ RUN cd /build && git clone https://github.com/mapserver/mapcache.git && \
 
 ADD mapcache.conf /etc/apache2/sites-available/mapcache.conf
 ADD mapcache.load /etc/apache2/mods-available/mapcache.load
-RUN a2enmod mapcache
+RUN a2enmod mapcache rewrite
 RUN a2dissite 000-default
 RUN a2ensite mapcache
 
