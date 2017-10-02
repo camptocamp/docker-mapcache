@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:stretch
 MAINTAINER Camptocamp "info@camptocamp.com"
 
 ENV VERSION 2016-04-02
