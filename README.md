@@ -1,8 +1,8 @@
 # MapCache
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/yjacolin/mapcache.svg)](https://hub.docker.com/r/yjacolin/mapcache/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/yjacolin/mapcache.svg)](https://hub.docker.com/r/camptocamp/mapcache/)
 
-[![Travis](https://travis-ci.org/yjacolin/docker-mapcache.svg)](https://travis-ci.org/yjacolin/docker-mapcache)
+[![Travis](https://travis-ci.org/camptocamp/docker-mapcache.svg)](https://travis-ci.org/camptocamp/docker-mapcache)
 
 MapCache is a server that implements tile caching to speed up access to WMS
 layers. The primary objectives are to be fast and easily deployable, while
