@@ -11,7 +11,7 @@ RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qqy git cmake \
         libpixman-1-dev libsqlite0-dev libcurl4-openssl-dev \
         libaprutil1-dev libapr1-dev libjpeg-dev libdpkg-dev \
         libdb5.3-dev libtiff5-dev libpcre3-dev \
-        apache2 apache2-threaded-dev apache2-mpm-worker apache2 && \
+        apache2 apache2-dev apache2 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/partial/* /tmp/* /var/tmp/*
 
