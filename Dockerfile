@@ -1,8 +1,8 @@
 FROM debian:stretch
 MAINTAINER Camptocamp "info@camptocamp.com"
 
-ENV VERSION 2016-04-02
-ENV MAPCACHE_VERSION=master
+ENV VERSION 2018-02-92
+ENV MAPCACHE_VERSION=branch-1-2
 
 RUN apt-get update
 RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qqy git cmake \
