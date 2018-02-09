@@ -1,8 +1,6 @@
 ---
-language: ruby
 sudo: required
 services: docker
-cache: bundler
 script:
   - ./.build.sh
 after_success:

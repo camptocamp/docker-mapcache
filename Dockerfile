@@ -15,7 +15,7 @@ RUN LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -qqy git cmake \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/partial/* /tmp/* /var/tmp/*
 
-RUN mkdir /build && mkdir -p /var/sig/tiles && chown -R www-data /var/sig/tiles
+RUN mkdir /build
 RUN mkdir /mapcache
 
 RUN cd /build && git clone https://github.com/mapserver/mapcache.git && \
@@ -30,7 +30,7 @@ RUN cd /build && git clone https://github.com/mapserver/mapcache.git && \
 
 ADD mapcache.conf /etc/apache2/sites-available/mapcache.conf
 ADD mapcache.load /etc/apache2/mods-available/mapcache.load
-ADD docker-start.sh /
+ADD parts_entrypoint /usr/bin/
 
 RUN a2enmod mapcache rewrite && \
     a2dissite 000-default && \
@@ -43,8 +43,9 @@ RUN a2enmod mapcache rewrite && \
        ' '{}' ';'
 
 WORKDIR /mapcache
-VOLUME ["/mapcache", "/var/sig/tiles"]
+VOLUME ["/mapcache"]
 
 EXPOSE 80
 
-CMD ["/docker-start.sh"]
+ENTRYPOINT ["/usr/bin/docker-entrypoint"]
+CMD ["apache2ctl", "-DFOREGROUND"]
