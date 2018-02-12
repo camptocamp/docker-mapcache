@@ -1,6 +1,6 @@
 # MapCache
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/yjacolin/mapcache.svg)](https://hub.docker.com/r/camptocamp/mapcache/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/camptocamp/mapcache.svg)](https://hub.docker.com/r/camptocamp/mapcache/)
 
 [![Travis](https://travis-ci.org/camptocamp/docker-mapcache.svg)](https://travis-ci.org/camptocamp/docker-mapcache)
 
@@ -15,14 +15,14 @@ https://github.com/mapserver/mapcache
 ## Install
 ```
 $ git clone
-$ docker build -t yjacolin/mapache .
+$ docker build -t camptocamp/mapache .
 ```
 
 ## Run mapcache
 
 Get help:
 ```
-$ docker run -d -p 8281:80 -v somewhere:/var/sig/tiles -v config.xml:/mapcache/config.xml --name mapcache yjacolin/mapcache
+$ docker run -d -p 8281:80 -v somewhere:/var/sig/tiles -v config.xml:/mapcache/config.xml --name mapcache camptocamp/mapcache
 $ docker start mapcache
 $ docker stop mapcache
 ```
@@ -31,7 +31,7 @@ $ docker stop mapcache
 
 Seed google layer from config file:
 ```
-$ docker run --rm -ti -v somewhere:/var/sig/tiles -v config.xml:/mapcache/config.xml yjacolin/mapcache mapcache_seed -c /mapcache/config.xml -l google
+$ docker run --rm -ti -v somewhere:/var/sig/tiles -v config.xml:/mapcache/config.xml camptocamp/mapcache mapcache_seed -c /mapcache/config.xml -l google
 ```
 
 ## TODO
