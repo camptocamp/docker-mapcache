@@ -1,8 +1,11 @@
 ---
-language: ruby
-sudo: required
+sudo: false
+dist: trusty
+
 services: docker
-cache: bundler
+env:
+  MAIN_BRANCH=1.4
+
 script:
   - ./.build.sh
 after_success:
