@@ -22,7 +22,7 @@ RUN cd /build && git clone https://github.com/mapserver/mapcache.git && \
     cd /build/mapcache && git checkout ${MAPCACHE_VERSION} && \
     mkdir /build/mapcache/build && cd /build/mapcache/build && \
     cmake \
-      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_BUILD_TYPE=Release -DWITH_MEMCACHE=1 \
       .. && \
     make && make install && ldconfig && \
     cp /build/mapcache/mapcache.xml /mapcache/ && \
