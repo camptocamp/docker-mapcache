@@ -12,30 +12,21 @@ solution.
 For more information, see MapCache repository: 
 https://github.com/mapserver/mapcache
 
-## Install
-```
-$ git clone
-$ docker build -t camptocamp/mapache .
-```
-
-## Run mapcache
-
-Get help:
-```
-$ docker run -d -p 8281:80 -v somewhere:/var/sig/tiles -v config.xml:/mapcache/config.xml --name mapcache camptocamp/mapcache
-$ docker start mapcache
-$ docker stop mapcache
-```
-
 ## Run mapcache_seed
 
 Seed google layer from config file:
 ```
-$ docker run --rm -ti -v somewhere:/var/sig/tiles -v config.xml:/mapcache/config.xml camptocamp/mapcache mapcache_seed -c /mapcache/config.xml -l google
+docker run --rm -ti --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/config.xml camptocamp/mapcache:1.6 mapcache_seed -c /etc/mapcache/config.xml -l google
 ```
 
-## TODO
+## Run mapcache
 
-* fastcgi
-* add optionnal parameter to mapcache build
+```
+docker run --publish=8080:80 --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/config.xml camptocamp/mapcache:1.6
+```
 
+## Run mapcache as non root user
+
+```
+docker run --user=www-data --publish=8080:8080 --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/config.xml camptocamp/mapcache:1.6
+```
