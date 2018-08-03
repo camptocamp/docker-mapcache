@@ -1,6 +1,11 @@
 #!/bin/bash -e
 # Setup login
 
+echo TRAVIS_PULL_REQUEST: $TRAVIS_PULL_REQUEST
+echo TRAVIS_BRANCH: $TRAVIS_BRANCH
+echo TRAVIS_TAG: $TRAVIS_TAG
+echo MAIN_BRANCH: $MAIN_BRANCH
+
 if  [ "$TRAVIS_PULL_REQUEST" == "false" ]
 then
     mkdir ${HOME}\/.docker
