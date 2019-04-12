@@ -43,6 +43,12 @@ COPY mapcache.conf /etc/apache2/conf-enabled/
 COPY mapcache.load /etc/apache2/mods-available/
 COPY start-server /usr/bin/
 
+ENV MAX_REQUESTS_PER_PROCESS=1000 \
+    SERVER_LIMIT=16 \
+    MAX_REQUEST_WORKERS=400 \
+    THREADS_PER_CHILD=25 \
+    MIN_SPARE_THREADS=75
+
 RUN a2enmod mapcache rewrite && \
     a2dismod -f auth_basic authn_file authn_core authz_host authz_user autoindex dir status && \
     rm /etc/apache2/mods-enabled/alias.conf && \
