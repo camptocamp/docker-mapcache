@@ -4,7 +4,7 @@ dist: trusty
 
 services: docker
 env:
-  MAIN_BRANCH=master
+  MAIN_BRANCH=1.8
 
 script:
   - ./.build.sh
