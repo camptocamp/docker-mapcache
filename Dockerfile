@@ -1,7 +1,7 @@
 FROM debian:stretch
 MAINTAINER Camptocamp "info@camptocamp.com"
 
-ENV MAPCACHE_VERSION=branch-1-8 \
+ENV MAPCACHE_VERSION=branch-1-10 \
     APACHE_CONFDIR=/etc/apache2 \
     APACHE_RUN_USER=www-data \
     APACHE_RUN_GROUP=www-data \
