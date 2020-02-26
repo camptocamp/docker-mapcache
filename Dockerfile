@@ -16,7 +16,7 @@ RUN apt-get update && \
     apt-get install --assume-yes --no-install-recommends ca-certificates git cmake build-essential \
         liblz-dev libpng-dev libgdal-dev libgeos-dev libpixman-1-dev libsqlite0-dev libcurl4-openssl-dev \
         libaprutil1-dev libapr1-dev libjpeg-dev libdpkg-dev libdb5.3-dev libtiff5-dev libpcre3-dev \
-        apache2 apache2-dev && \
+        apache2 apache2-dev libpq-dev && ldconfig && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/partial/* /tmp/* /var/tmp/* && \
     adduser www-data root && \
@@ -32,7 +32,7 @@ RUN mkdir /build && \
     git checkout ${MAPCACHE_VERSION} && \
     mkdir /build/mapcache/build && \
     cd /build/mapcache/build && \
-    cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MEMCACHE=1 -DWITH_FCGI=0 -DWITH_CGI=0 .. && \
+    cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MEMCACHE=1 -DWITH_FCGI=0 -DWITH_CGI=0 -DWITH_POSTGRESQL=0 .. && \
     make && \
     make install && \
     ldconfig && \
