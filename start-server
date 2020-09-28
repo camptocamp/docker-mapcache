@@ -9,4 +9,6 @@ then
     sed -i -e 's/Listen 80$/Listen 8080/' /etc/apache2/ports.conf
 fi
 
-exec apache2ctl -DFOREGROUND
+rm -f $APACHE_RUN_DIR/apache2.pid
+
+exec apache2 -DFOREGROUND
