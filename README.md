@@ -16,19 +16,19 @@ https://github.com/mapserver/mapcache
 
 Seed google layer from config file:
 ```
-docker run --rm -ti --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/config.xml camptocamp/mapcache:1.6 mapcache_seed -c /etc/mapcache/config.xml -l google
+docker run --rm -ti --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/mapcache.xml camptocamp/mapcache:1.6 mapcache_seed -c /etc/mapcache/mapcache.xml -l google
 ```
 
 ## Run mapcache
 
 ```
-docker run --publish=8080:80 --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/config.xml camptocamp/mapcache:1.6
+docker run --publish=8080:80 --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/mapcache.xml camptocamp/mapcache:1.6
 ```
 
 ## Run mapcache as non root user
 
 ```
-docker run --user=www-data --publish=8080:8080 --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/config.xml camptocamp/mapcache:1.6
+docker run --user=www-data --publish=8080:8080 --volume=somewhere:/var/sig/tiles --volume=config.xml:/etc/mapcache/mapcache.xml camptocamp/mapcache:1.6
 ```
 
 ## Tunings
