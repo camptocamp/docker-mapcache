@@ -1,27 +1,13 @@
-FROM debian:stretch
+FROM debian:buster as builder
 MAINTAINER Camptocamp "info@camptocamp.com"
 
-ENV MAPCACHE_VERSION=master \
-    APACHE_CONFDIR=/etc/apache2 \
-    APACHE_RUN_USER=www-data \
-    APACHE_RUN_GROUP=www-data \
-    APACHE_RUN_DIR=/var/run/apache2 \
-    APACHE_PID_FILE=/var/run/apache2/apache2.pid \
-    APACHE_LOCK_DIR=/var/lock/apache2 \
-    APACHE_LOG_DIR=/var/log/apache2 \
-    LANG=C \
-    TERM=linux
+ENV MAPCACHE_VERSION=master
 
 RUN apt-get update && \
     apt-get install --assume-yes --no-install-recommends ca-certificates git cmake build-essential \
         liblz-dev libpng-dev libgdal-dev libgeos-dev libpixman-1-dev libsqlite0-dev libcurl4-openssl-dev \
         libaprutil1-dev libapr1-dev libjpeg-dev libdpkg-dev libdb5.3-dev libtiff5-dev libpcre3-dev \
-        apache2 apache2-dev && \
-    apt-get clean && \
-    rm --recursive --force /var/lib/apt/lists/partial/* /tmp/* /var/tmp/* && \
-    adduser www-data root && \
-    mkdir --parent ${APACHE_RUN_DIR} ${APACHE_LOCK_DIR} ${APACHE_LOG_DIR} && \
-    chmod -R g+w /etc/apache2 ${APACHE_RUN_DIR} ${APACHE_LOCK_DIR} ${APACHE_LOG_DIR}
+        apache2 apache2-dev postgresql-server-dev-all
 
 RUN mkdir /build && \
     mkdir /etc/mapcache && \
@@ -32,12 +18,43 @@ RUN mkdir /build && \
     git checkout ${MAPCACHE_VERSION} && \
     mkdir /build/mapcache/build && \
     cd /build/mapcache/build && \
-    cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MEMCACHE=1 -DWITH_FCGI=0 -DWITH_CGI=0 .. && \
+    cmake -DCMAKE_BUILD_TYPE=Release -DWITH_MEMCACHE=1 -DWITH_FCGI=0 -DWITH_CGI=0 -DWITH_POSTGRESQL=1 .. && \
     make && \
     make install && \
     ldconfig && \
     cp /build/mapcache/mapcache.xml /mapcache/ && \
     rm -Rf /build
+
+FROM debian:buster as runner
+LABEL maintainer="info@camptocamp.com"
+
+ENV APACHE_CONFDIR=/etc/apache2 \
+    APACHE_RUN_USER=www-data \
+    APACHE_RUN_GROUP=www-data \
+    APACHE_RUN_DIR=/var/run/apache2 \
+    APACHE_PID_FILE=/var/run/apache2/apache2.pid \
+    APACHE_LOCK_DIR=/var/lock/apache2 \
+    APACHE_LOG_DIR=/var/log/apache2 \
+    LANG=C \
+    TERM=linux
+
+RUN apt-get update && \
+    apt-get install --assume-yes --no-install-recommends ca-certificates \
+        libgdal20 libaprutil1 libapr1 libpixman-1-0 libdb5.3 libpcre3 \
+        apache2 libpq5 && \
+    apt-get clean && \
+    rm --recursive --force /var/lib/apt/lists/partial/* /tmp/* /var/tmp/* && \
+    adduser www-data root && \
+    mkdir --parent ${APACHE_RUN_DIR} ${APACHE_LOCK_DIR} ${APACHE_LOG_DIR} && \
+    chmod -R g+w /etc/apache2 ${APACHE_RUN_DIR} ${APACHE_LOCK_DIR} ${APACHE_LOG_DIR}
+
+COPY --from=builder /usr/local/bin /usr/local/bin/
+COPY --from=builder /usr/local/lib /usr/local/lib/
+COPY --from=builder /usr/lib/apache2/modules/mod_mapcache.so /usr/lib/apache2/modules/mod_mapcache.so
+COPY --from=builder /etc/mapcache/mapcache.xml /etc/mapcache/mapcache.xml
+
+RUN ln --symbolic /etc/mapcache /mapcache
+RUN ldconfig
 
 COPY mapcache.conf /etc/apache2/conf-enabled/
 COPY mapcache.load /etc/apache2/mods-available/
