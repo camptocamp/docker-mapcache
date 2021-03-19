@@ -42,3 +42,4 @@ You can set a few environment variables to tune the container:
 * `MAX_REQUEST_WORKERS`: See https://httpd.apache.org/docs/2.4/mod/event.html (default=400)
 * `THREADS_PER_CHILD`: See https://httpd.apache.org/docs/2.4/mod/event.html (default=25)
 * `MIN_SPARE_THREADS`: See https://httpd.apache.org/docs/2.4/mod/event.html (default=75)
+* `MAPCACHE_PATH`: path to MapCache service, default to mapcache
